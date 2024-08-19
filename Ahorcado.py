@@ -4,9 +4,41 @@ import random
 print("Bienvenido al juego del ahorcado")
 Nombre = input("Ingrese su nombre")
 print(f"Bienvenido {Nombre} evita morir")
-NumeroVIdas= 6
+NumeroVIdas= 0
 Palabras= ["jojo", "caballo", "loco", "ingeniero", "software"]
 secreto= random.choice(Palabras)
-#este print es para verificar que la variable secreto funciona posteriormente se la quitara
-print(secreto)
-#Desconozco aun mucho de python por lo que solo puedo avanzar hasta aqui, espero y en proximas clases pueda avanzar mas
+cadena= "-" * len(secreto)
+#Se crea los posibles caminos que el usuario puede elegir
+while True:
+    print (cadena)
+    letra= input("ingresa una letra:")
+    if letra in secreto:
+        for i in range (len(secreto)):
+            if secreto[i]== letra:
+                cadena= cadena[:i]+ letra + cadena[i+1 :]
+    else:
+        NumeroVIdas+=1
+        if NumeroVIdas== 1:
+            print("O")
+        elif NumeroVIdas==2:
+            print(" O")
+            print("/")
+        elif NumeroVIdas==3:
+            print(" O")
+            print("/|")
+        elif NumeroVIdas==4:
+            print(" O")
+            print("/|\\")
+        elif NumeroVIdas==5:
+            print(" O")
+            print("/|\\")
+            print("/")
+        elif NumeroVIdas==6:
+             print(" O")
+             print("/|\\")
+             print("/ \\")
+             print(f"Haz perdido el juego, la palabra secreto era {secreto}")
+             break
+    if cadena == secreto:
+        print(f"Felicidades has ganado el juego, la palabra secreta era {secreto}")    
+        break
